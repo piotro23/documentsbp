@@ -42,11 +42,13 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
         
         private bpObjectsLisDataTable tablebpObjectsLis;
         
+        private bp_userDataTable tablebp_user;
+        
         private global::System.Data.DataRelation relationFK_bp_object_bp_document;
         
-        private global::System.Data.DataRelation relationFK_bp_document_group_bp_group;
-        
         private global::System.Data.DataRelation relationFK_bp_document_group_bp_document;
+        
+        private global::System.Data.DataRelation relationFK_bp_document_group_bp_group;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -102,6 +104,9 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 }
                 if ((ds.Tables["bpObjectsLis"] != null)) {
                     base.Tables.Add(new bpObjectsLisDataTable(ds.Tables["bpObjectsLis"]));
+                }
+                if ((ds.Tables["bp_user"] != null)) {
+                    base.Tables.Add(new bp_userDataTable(ds.Tables["bp_user"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -213,6 +218,16 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public bp_userDataTable bp_user {
+            get {
+                return this.tablebp_user;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -305,6 +320,9 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 if ((ds.Tables["bpObjectsLis"] != null)) {
                     base.Tables.Add(new bpObjectsLisDataTable(ds.Tables["bpObjectsLis"]));
                 }
+                if ((ds.Tables["bp_user"] != null)) {
+                    base.Tables.Add(new bp_userDataTable(ds.Tables["bp_user"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -392,9 +410,15 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                     this.tablebpObjectsLis.InitVars();
                 }
             }
+            this.tablebp_user = ((bp_userDataTable)(base.Tables["bp_user"]));
+            if ((initTable == true)) {
+                if ((this.tablebp_user != null)) {
+                    this.tablebp_user.InitVars();
+                }
+            }
             this.relationFK_bp_object_bp_document = this.Relations["FK_bp_object_bp_document"];
-            this.relationFK_bp_document_group_bp_group = this.Relations["FK_bp_document_group_bp_group"];
             this.relationFK_bp_document_group_bp_document = this.Relations["FK_bp_document_group_bp_document"];
+            this.relationFK_bp_document_group_bp_group = this.Relations["FK_bp_document_group_bp_group"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -423,6 +447,8 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
             base.Tables.Add(this.tablebp_object);
             this.tablebpObjectsLis = new bpObjectsLisDataTable();
             base.Tables.Add(this.tablebpObjectsLis);
+            this.tablebp_user = new bp_userDataTable();
+            base.Tables.Add(this.tablebp_user);
             global::System.Data.ForeignKeyConstraint fkc;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_bp_object_bp_document", new global::System.Data.DataColumn[] {
                         this.tablebp_object.idColumn}, new global::System.Data.DataColumn[] {
@@ -431,16 +457,16 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
             fkc.UpdateRule = global::System.Data.Rule.None;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_bp_document_group_bp_group", new global::System.Data.DataColumn[] {
-                        this.tablebp_group.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebp_document_group.group_idColumn});
-            this.tablebp_document_group.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.None;
-            fkc.UpdateRule = global::System.Data.Rule.None;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_bp_document_group_bp_document", new global::System.Data.DataColumn[] {
                         this.tablebp_document.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebp_document_group.document_idColumn});
+            this.tablebp_document_group.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_bp_document_group_bp_group", new global::System.Data.DataColumn[] {
+                        this.tablebp_group.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebp_document_group.group_idColumn});
             this.tablebp_document_group.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.None;
@@ -449,14 +475,14 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                         this.tablebp_object.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebp_document.object_idColumn}, false);
             this.Relations.Add(this.relationFK_bp_object_bp_document);
-            this.relationFK_bp_document_group_bp_group = new global::System.Data.DataRelation("FK_bp_document_group_bp_group", new global::System.Data.DataColumn[] {
-                        this.tablebp_group.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablebp_document_group.group_idColumn}, false);
-            this.Relations.Add(this.relationFK_bp_document_group_bp_group);
             this.relationFK_bp_document_group_bp_document = new global::System.Data.DataRelation("FK_bp_document_group_bp_document", new global::System.Data.DataColumn[] {
                         this.tablebp_document.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablebp_document_group.document_idColumn}, false);
             this.Relations.Add(this.relationFK_bp_document_group_bp_document);
+            this.relationFK_bp_document_group_bp_group = new global::System.Data.DataRelation("FK_bp_document_group_bp_group", new global::System.Data.DataColumn[] {
+                        this.tablebp_group.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablebp_document_group.group_idColumn}, false);
+            this.Relations.Add(this.relationFK_bp_document_group_bp_group);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -510,6 +536,12 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializebpObjectsLis() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializebp_user() {
             return false;
         }
         
@@ -594,6 +626,9 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void bpObjectsLisRowChangeEventHandler(object sender, bpObjectsLisRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void bp_userRowChangeEventHandler(object sender, bp_userRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1679,7 +1714,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columnrok = new global::System.Data.DataColumn("rok", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrok);
                 this.columnrok.ReadOnly = true;
-                this.Locale = new global::System.Globalization.CultureInfo("pl");
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2133,6 +2168,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columnstat_creator_id.AllowDBNull = false;
                 this.columnstat_lastmodify_data.AllowDBNull = false;
                 this.columnstat_lastmodifier_id.AllowDBNull = false;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2438,6 +2474,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columnid.Unique = true;
                 this.columntitle.MaxLength = 50;
                 this.columndescription.MaxLength = 255;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2733,6 +2770,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columnid.AutoIncrementStep = -1;
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3070,6 +3108,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columnphone.MaxLength = 20;
                 this.columnemail.MaxLength = 255;
                 this.columndescription.MaxLength = 255;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3332,6 +3371,7 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 this.columntitle = new global::System.Data.DataColumn("title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntitle);
                 this.columntitle.MaxLength = 255;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3418,6 +3458,298 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "bpObjectsLisDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class bp_userDataTable : global::System.Data.TypedTableBase<bp_userRow> {
+            
+            private global::System.Data.DataColumn columnshortcut;
+            
+            private global::System.Data.DataColumn columnfullname;
+            
+            private global::System.Data.DataColumn columnid;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userDataTable() {
+                this.TableName = "bp_user";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bp_userDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected bp_userDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn shortcutColumn {
+                get {
+                    return this.columnshortcut;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fullnameColumn {
+                get {
+                    return this.columnfullname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRow this[int index] {
+                get {
+                    return ((bp_userRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bp_userRowChangeEventHandler bp_userRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bp_userRowChangeEventHandler bp_userRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bp_userRowChangeEventHandler bp_userRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event bp_userRowChangeEventHandler bp_userRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Addbp_userRow(bp_userRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRow Addbp_userRow(string shortcut, string fullname) {
+                bp_userRow rowbp_userRow = ((bp_userRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        shortcut,
+                        fullname,
+                        null};
+                rowbp_userRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowbp_userRow);
+                return rowbp_userRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRow FindByid(long id) {
+                return ((bp_userRow)(this.Rows.Find(new object[] {
+                            id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                bp_userDataTable cln = ((bp_userDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new bp_userDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnshortcut = base.Columns["shortcut"];
+                this.columnfullname = base.Columns["fullname"];
+                this.columnid = base.Columns["id"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnshortcut = new global::System.Data.DataColumn("shortcut", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshortcut);
+                this.columnfullname = new global::System.Data.DataColumn("fullname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfullname);
+                this.columnid = new global::System.Data.DataColumn("id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
+                this.columnshortcut.MaxLength = 5;
+                this.columnfullname.MaxLength = 70;
+                this.columnid.AutoIncrement = true;
+                this.columnid.AutoIncrementSeed = -1;
+                this.columnid.AutoIncrementStep = -1;
+                this.columnid.AllowDBNull = false;
+                this.columnid.Unique = true;
+                this.Locale = new global::System.Globalization.CultureInfo("pl-PL");
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRow Newbp_userRow() {
+                return ((bp_userRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new bp_userRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(bp_userRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.bp_userRowChanged != null)) {
+                    this.bp_userRowChanged(this, new bp_userRowChangeEvent(((bp_userRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.bp_userRowChanging != null)) {
+                    this.bp_userRowChanging(this, new bp_userRowChangeEvent(((bp_userRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.bp_userRowDeleted != null)) {
+                    this.bp_userRowDeleted(this, new bp_userRowChangeEvent(((bp_userRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.bp_userRowDeleting != null)) {
+                    this.bp_userRowDeleting(this, new bp_userRowChangeEvent(((bp_userRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Removebp_userRow(bp_userRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BP_dataset ds = new BP_dataset();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "bp_userDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4388,23 +4720,23 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bp_groupRow bp_groupRow {
-                get {
-                    return ((bp_groupRow)(this.GetParentRow(this.Table.ParentRelations["FK_bp_document_group_bp_group"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_bp_document_group_bp_group"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bp_documentRow bp_documentRow {
                 get {
                     return ((bp_documentRow)(this.GetParentRow(this.Table.ParentRelations["FK_bp_document_group_bp_document"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_bp_document_group_bp_document"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_groupRow bp_groupRow {
+                get {
+                    return ((bp_groupRow)(this.GetParentRow(this.Table.ParentRelations["FK_bp_document_group_bp_group"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_bp_document_group_bp_group"]);
                 }
             }
             
@@ -4661,6 +4993,88 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SettitleNull() {
                 this[this.tablebpObjectsLis.titleColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class bp_userRow : global::System.Data.DataRow {
+            
+            private bp_userDataTable tablebp_user;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal bp_userRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablebp_user = ((bp_userDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string shortcut {
+                get {
+                    try {
+                        return ((string)(this[this.tablebp_user.shortcutColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shortcut\' in table \'bp_user\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebp_user.shortcutColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string fullname {
+                get {
+                    try {
+                        return ((string)(this[this.tablebp_user.fullnameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fullname\' in table \'bp_user\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebp_user.fullnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long id {
+                get {
+                    return ((long)(this[this.tablebp_user.idColumn]));
+                }
+                set {
+                    this[this.tablebp_user.idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsshortcutNull() {
+                return this.IsNull(this.tablebp_user.shortcutColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetshortcutNull() {
+                this[this.tablebp_user.shortcutColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsfullnameNull() {
+                return this.IsNull(this.tablebp_user.fullnameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetfullnameNull() {
+                this[this.tablebp_user.fullnameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4956,6 +5370,40 @@ namespace BiegPiastowDokumentacja.Properties.DataSources {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bpObjectsLisRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class bp_userRowChangeEvent : global::System.EventArgs {
+            
+            private bp_userRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRowChangeEvent(bp_userRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bp_userRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -6232,6 +6680,147 @@ namespace BiegPiastowDokumentacja.Properties.DataSources.BP_datasetTableAdapters
             }
             int returnValue = this.Adapter.Fill(dataTable);
             return returnValue;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class bp_userTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.Odbc.OdbcDataAdapter _adapter;
+        
+        private global::System.Data.Odbc.OdbcConnection _connection;
+        
+        private global::System.Data.Odbc.OdbcCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bp_userTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private global::System.Data.Odbc.OdbcDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.Odbc.OdbcConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.Odbc.OdbcCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.Odbc.OdbcCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.Odbc.OdbcDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "bp_user";
+            tableMapping.ColumnMappings.Add("shortcut", "shortcut");
+            tableMapping.ColumnMappings.Add("fullname", "fullname");
+            tableMapping.ColumnMappings.Add("id", "id");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.Odbc.OdbcConnection();
+            this._connection.ConnectionString = global::BiegPiastowDokumentacja.Properties.Settings.Default.postgresConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.Odbc.OdbcCommand[1];
+            this._commandCollection[0] = new global::System.Data.Odbc.OdbcCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT     id, shortcut, fullname\r\nFROM         \"public\".bp_user";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(BP_dataset.bp_userDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BP_dataset.bp_userDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            BP_dataset.bp_userDataTable dataTable = new BP_dataset.bp_userDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
         }
     }
 }

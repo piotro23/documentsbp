@@ -653,6 +653,11 @@
 			this.cmbPersonName.ValueMember = "id";
 			this.cmbPersonName.SelectedIndexChanged += new System.EventHandler(this.cmbPersonName_SelectedIndexChanged);
 			// 
+			// bpObjectsLisBindingSource
+			// 
+			this.bpObjectsLisBindingSource.DataMember = "bpObjectsLis";
+			this.bpObjectsLisBindingSource.DataSource = this.bP_dataset;
+			// 
 			// lblPersonEmail
 			// 
 			this.lblPersonEmail.AutoSize = true;
@@ -921,7 +926,7 @@
 			this.pnlDoFiltercCommands.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.45856F));
 			this.pnlDoFiltercCommands.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
 			this.pnlDoFiltercCommands.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 152F));
-			this.pnlDoFiltercCommands.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+			this.pnlDoFiltercCommands.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
 			this.pnlDoFiltercCommands.Controls.Add(this.chck_LevelsListFiltering, 0, 0);
 			this.pnlDoFiltercCommands.Controls.Add(this.btnClearFilter, 4, 0);
 			this.pnlDoFiltercCommands.Controls.Add(this.txtDocSrchFree, 2, 0);
@@ -960,7 +965,7 @@
 			// 
 			// txtDocSrchFree
 			// 
-			this.txtDocSrchFree.Location = new System.Drawing.Point(110, 3);
+			this.txtDocSrchFree.Location = new System.Drawing.Point(109, 3);
 			this.txtDocSrchFree.Name = "txtDocSrchFree";
 			this.txtDocSrchFree.Size = new System.Drawing.Size(192, 20);
 			this.txtDocSrchFree.TabIndex = 5;
@@ -969,7 +974,7 @@
 			// cmbDocSrchPreSets
 			// 
 			this.cmbDocSrchPreSets.FormattingEnabled = true;
-			this.cmbDocSrchPreSets.Location = new System.Drawing.Point(316, 3);
+			this.cmbDocSrchPreSets.Location = new System.Drawing.Point(315, 3);
 			this.cmbDocSrchPreSets.Name = "cmbDocSrchPreSets";
 			this.cmbDocSrchPreSets.Size = new System.Drawing.Size(146, 21);
 			this.cmbDocSrchPreSets.TabIndex = 6;
